@@ -1,0 +1,31 @@
+drawroom_web:
+    env_file:
+        - docker.env      # edit first :D
+    build: nodejs
+    container_name: "drawroom_web"
+    volumes:
+        - "../www:/home/node/www"
+        - "../ca:/home/node/ca"
+        - "./:/home/node/docker"
+        #- $SSH_AUTH_SOCK:/ssh-agent # Forward local machine SSH key to docker
+    ports:
+        - "3000:3000"
+        - "8080:80"
+        - "8443:443"
+        - "9080:9080"
+
+logio_harvester:
+    image: temal/logio-harvester
+    container_name: "drawroom_logio_harvester"
+    links:
+        - logio_server
+    volumes:
+        - "./logio/:/home/logio/.log.io"
+        - "./data/log:/home/logio/log"
+
+logio_server:
+    image: temal/logio-server
+    container_name: "drawroom_logio_server"
+    ports:
+        - 28777:28777
+        - 28778:28778

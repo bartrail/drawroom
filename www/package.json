@@ -1,0 +1,17 @@
+{
+  "name": "drawroom-server",
+  "version": "1.0.0",
+  "description": "für sachen",
+  "main": "srv.js",
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon -L srv.js > /home/node/docker/data/log/node_access.log 2> /home/node/docker/data/log/node_error.log",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
